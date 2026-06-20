@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CountdownTimer } from "@/components/CountdownTimer";
-import { EmailSignup } from "@/components/EmailSignup";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -20,9 +19,9 @@ function hasPublicAsset(src: string) {
 }
 
 const links = [
-  ["Launch Guide", "pre-order and release notes", "/gta-vi-preorder-guide"],
-  ["Console Prep", "PS5 and Xbox setup", "/ps5-vs-xbox-gta-vi"],
-  ["Deal Watch", "accessories and prices", "/gaming-deals"],
+  ["Launch Guide", "/gta-vi-preorder-guide"],
+  ["Console Prep", "/ps5-vs-xbox-gta-vi"],
+  ["Deal Watch", "/gaming-deals"],
 ] as const;
 
 export default function Home() {
@@ -45,34 +44,24 @@ export default function Home() {
             className="hero-bg-image object-cover"
           />
         ) : null}
-        <div className="absolute inset-0 bg-black/70" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_22%,rgba(34,211,238,0.22),transparent_34rem),radial-gradient(circle_at_78%_76%,rgba(217,70,239,0.12),transparent_30rem)]" />
-        <div className="absolute inset-0 soft-grid opacity-25" />
+        <div className="absolute inset-0 bg-black/78" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_24%,rgba(34,211,238,0.18),transparent_34rem),radial-gradient(circle_at_80%_78%,rgba(217,70,239,0.09),transparent_30rem)]" />
+        <div className="absolute inset-0 soft-grid opacity-15" />
 
-        <div className="animate-rise relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-7 pb-16">
+        <div className="animate-rise relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-6 pb-12">
           <p className="minimal-label">Open World Radar</p>
           <h1 className="minimal-title">GTA VI Countdown</h1>
           <p className="minimal-date">November 19, 2026</p>
 
           <CountdownTimer targetIso={site.gtaReleaseIso} />
 
-          <div className="mt-4 flex flex-col gap-2 text-left sm:flex-row sm:text-center">
-            {links.map(([title, description, href]) => (
+          <div className="mt-2 flex flex-wrap justify-center gap-2">
+            {links.map(([title, href]) => (
               <Link key={title} href={href} className="minimal-pill">
                 <span>{title}</span>
-                <small>{description}</small>
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section id="notify" className="mx-auto max-w-xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
-          <h2 className="text-lg font-black uppercase tracking-[0.22em] text-white">
-            Get launch alerts
-          </h2>
-          <EmailSignup />
         </div>
       </section>
     </div>

@@ -25,7 +25,7 @@ export function Header() {
           ))}
         </nav>
         <Link
-          href="/#notify"
+          href="/contact"
           className="rounded-full border border-cyan-200/30 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyan-50 transition hover:-translate-y-0.5 hover:border-cyan-200/60 hover:bg-cyan-200/15"
         >
           Notify Me
