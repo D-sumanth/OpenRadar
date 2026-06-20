@@ -1,201 +1,158 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArticleCard } from "@/components/ArticleCard";
+import { CinematicMediaPanel } from "@/components/CinematicMediaPanel";
 import { CountdownTimer } from "@/components/CountdownTimer";
-import { DealCard } from "@/components/DealCard";
 import { EmailSignup } from "@/components/EmailSignup";
-import { RadarGraphic } from "@/components/RadarGraphic";
-import { RadarUpdateCard } from "@/components/RadarUpdateCard";
-import { SocialLinks } from "@/components/SocialLinks";
-import { deals } from "@/lib/deals";
-import { posts } from "@/lib/posts";
-import { radarUpdates } from "@/lib/radar-updates";
+import { QuickActionCard } from "@/components/QuickActionCard";
+import { heroMedia, mediaStrip } from "@/lib/media";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Open World Radar | GTA VI Updates, Launch Guide, Console Deals",
+  title: "Open World Radar | GTA VI Countdown, Launch Guide and Gaming Deals",
   description:
-    "Open World Radar is a fan-made hub for GTA VI updates, open-world gaming guides, PS5 and Xbox launch prep, and console deal watchlists.",
+    "Fan-made GTA VI launch countdown, console prep guides, open-world gaming updates, and gaming deal alerts.",
 };
 
-const updates = [
-  "Countdown set to the current November 19, 2026 GTA VI launch date.",
-  "Pre-order tracker prepared for PS5 and Xbox Series X|S listings.",
-  "Console guide compares ecosystem, storage, controller, and display choices.",
+const quickActions = [
+  {
+    title: "Launch Guide",
+    description: "Pre-order status, editions, platform notes, and what to wait for before buying.",
+    href: "/gta-vi-preorder-guide",
+    marker: "01",
+    cta: "Read guide",
+  },
+  {
+    title: "Console Prep",
+    description: "A practical PS5 vs Xbox breakdown for storage, displays, ecosystem, and budget.",
+    href: "/ps5-vs-xbox-gta-vi",
+    marker: "02",
+    cta: "Compare",
+  },
+  {
+    title: "Deal Watch",
+    description: "Console, controller, storage, and display picks with clear affiliate disclosure.",
+    href: "/gaming-deals",
+    marker: "03",
+    cta: "View deals",
+  },
 ];
+
+const latestSignals = ["Launch date watch", "Console buying guide", "Deal alerts"];
 
 export default function Home() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-white/10 bg-[#05070f]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:44px_44px]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
-          <div className="flex flex-col justify-center">
-            <p className="font-mono text-sm font-black uppercase tracking-[0.3em] text-lime-200">
-              Fan-made open-world signal desk
+      <section className="cinematic-bg relative overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 soft-grid opacity-40" />
+        <div className="relative mx-auto grid min-h-[calc(100svh-7rem)] max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-16">
+          <div className="animate-rise flex flex-col justify-center">
+            <p className="font-mono text-xs font-black uppercase tracking-[0.28em] text-lime-200">
+              Open-world launch signal
             </p>
-            <h1 className="mt-5 max-w-4xl text-5xl font-black leading-none text-white sm:text-6xl lg:text-7xl">
-              Track GTA VI launch updates, console prep, and open-world gaming deals.
+            <h1 className="mt-5 max-w-4xl text-5xl font-black leading-[0.95] text-white sm:text-6xl lg:text-7xl">
+              GTA VI Countdown, Launch Guide and Gaming Deals
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Open World Radar is a fan-made hub for verified updates, buying guides,
-              launch checklists, and no-hype gaming explainers.
+              Track the road to GTA VI with fan-made countdowns, console prep guides,
+              open-world gaming updates, and deal alerts without the official-brand noise.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/gta-vi-preorder-guide"
-                className="rounded bg-cyan-300 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.12em] text-slate-950 transition hover:bg-cyan-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-200"
               >
-                Read the launch guide
+                Launch guide
+                <span aria-hidden>→</span>
               </Link>
               <Link
-                href="/gaming-deals"
-                className="rounded border border-white/20 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.12em] text-white transition hover:bg-white/10"
+                href="#notify"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-white/10"
               >
-                Explore gaming deals
+                Notify me
               </Link>
             </div>
-            <p className="mt-4 text-sm font-semibold text-slate-400">
-              Official updates clearly separated from rumours and community speculation.
+            <p className="mt-5 text-sm font-semibold text-slate-400">
+              Fan-made gaming news and guides. Not affiliated with Rockstar Games or
+              Take-Two Interactive.
             </p>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {latestSignals.map((signal) => (
+                <span
+                  key={signal}
+                  className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-300"
+                >
+                  {signal}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="overflow-hidden rounded border border-cyan-300/20 bg-white/[0.03]">
-            <RadarGraphic tone="cyan" />
+          <div className="animate-rise-delay flex items-center">
+            <CinematicMediaPanel
+              src={heroMedia.src}
+              alt={heroMedia.alt}
+              label="Original media slot"
+              priority
+              className="min-h-[440px] w-full"
+            />
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-cyan-200">
-              Latest Radar Updates
-            </p>
-            <h2 className="mt-2 text-3xl font-black text-white">Clear labels, practical context.</h2>
-          </div>
-          <Link href="/blog" className="text-sm font-bold text-cyan-200">
-            Visit the blog
-          </Link>
-        </div>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {radarUpdates.map((update) => (
-            <RadarUpdateCard key={update.title} update={update} />
-          ))}
-        </div>
-      </section>
+      <main>
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <CountdownTimer targetIso={site.gtaReleaseIso} />
+        </section>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-        <CountdownTimer targetIso={site.gtaReleaseIso} />
-        <div className="rounded border border-white/10 bg-white/[0.04] p-5">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-fuchsia-200">
-            Latest updates
-          </p>
-          <div className="mt-4 grid gap-3">
-            {updates.map((update) => (
-              <div key={update} className="rounded bg-black/25 p-4 text-sm text-slate-300">
-                {update}
+        <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+          <div className="grid gap-4 md:grid-cols-3">
+            {quickActions.map((action) => (
+              <QuickActionCard key={action.title} {...action} />
+            ))}
+          </div>
+        </section>
+
+        <section className="border-y border-white/10 bg-white/[0.02]">
+          <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-fuchsia-200">
+                  Visual radar
+                </p>
+                <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">
+                  Drop in your own approved gaming artwork.
+                </h2>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-white/[0.025]">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-cyan-200">
-                Console buying guides
-              </p>
-              <h2 className="mt-2 text-3xl font-black text-white">Pick the setup, not the hype.</h2>
+              <Link href="/blog" className="text-sm font-bold text-cyan-200">
+                Latest updates
+              </Link>
             </div>
-            <Link href="/ps5-vs-xbox-gta-vi" className="text-sm font-bold text-cyan-200">
-              Read the full comparison
-            </Link>
-          </div>
-          <div className="mt-7 grid gap-4 md:grid-cols-3">
-            {["Performance and display", "Storage and downloads", "Friends and ecosystem"].map(
-              (item) => (
-                <div key={item} className="rounded border border-white/10 bg-black/25 p-5">
-                  <h3 className="text-lg font-black text-white">{item}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-400">
-                    Compare the real ownership details that affect a huge open-world launch.
-                  </p>
-                </div>
-              ),
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
-        <div>
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-lime-200">
-                Latest articles
-              </p>
-              <h2 className="mt-2 text-3xl font-black text-white">Fresh from the radar</h2>
+            <div className="grid gap-4 md:grid-cols-3">
+              {mediaStrip.map((item) => (
+                <CinematicMediaPanel
+                  key={item.src}
+                  src={item.src}
+                  alt={item.alt}
+                  label={item.label}
+                  className="min-h-72 rounded-[1.5rem]"
+                />
+              ))}
             </div>
-            <Link href="/blog" className="text-sm font-bold text-lime-200">
-              All posts
-            </Link>
           </div>
-          <div className="mt-7 grid gap-5 md:grid-cols-2">
-            {posts.slice(0, 2).map((post) => (
-              <ArticleCard key={post.slug} post={post} />
-            ))}
-          </div>
-        </div>
-        <aside className="rounded border border-fuchsia-300/20 bg-fuchsia-300/[0.05] p-6">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-fuchsia-200">
-            Email signup
-          </p>
-          <h2 className="mt-3 text-3xl font-black text-white">Get the launch checklist</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-400">
-            Join the list for GTA VI launch prep, console deal alerts, and weekly open-world
-            gaming updates. No spam, just practical updates.
-          </p>
-          <EmailSignup />
-        </aside>
-      </section>
+        </section>
 
-      <section className="border-y border-white/10 bg-cyan-300/[0.04]">
-        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:px-8">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-cyan-200">
-              Follow the radar
+        <section id="notify" className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="glass-panel rounded-[2rem] p-6 sm:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-lime-200">
+              Get launch alerts
             </p>
-            <h2 className="mt-2 text-3xl font-black text-white">Follow Open World Radar</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
-              Short GTA VI updates, console prep tips, and open-world gaming news are
-              coming soon across Shorts, Reels, and TikTok.
+            <h2 className="mt-3 text-3xl font-black text-white">Watch the launch window.</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-400">
+              A minimal signup placeholder for future updates. No real submission is wired yet.
             </p>
+            <EmailSignup />
           </div>
-          <div className="flex items-center lg:justify-end">
-            <SocialLinks />
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-amber-200">
-              Sample deals
-            </p>
-            <h2 className="mt-2 text-3xl font-black text-white">Console prep watchlist</h2>
-          </div>
-          <Link href="/gaming-deals" className="text-sm font-bold text-amber-200">
-            Browse deals
-          </Link>
-        </div>
-        <div className="grid gap-5 md:grid-cols-3">
-          {deals.map((deal) => (
-            <DealCard key={deal.title} deal={deal} />
-          ))}
-        </div>
-      </section>
+        </section>
+      </main>
     </>
   );
 }

@@ -45,20 +45,24 @@ export function CountdownTimer({ targetIso }: { targetIso: string }) {
   ] as const;
 
   return (
-    <section className="rounded border border-cyan-300/25 bg-cyan-300/[0.06] p-5 shadow-[0_0_55px_rgba(34,211,238,0.08)]">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-cyan-200">
-            GTA VI Countdown
+    <section className="glass-panel animate-glow rounded-[2rem] p-5 shadow-[0_0_80px_rgba(34,211,238,0.08)] sm:p-7">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-xl">
+          <p className="text-xs font-black uppercase tracking-[0.24em] text-cyan-200">
+            Countdown to launch
           </p>
-          <h2 className="mt-2 text-2xl font-black text-white">{targetLabel}</h2>
+          <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">{targetLabel}</h2>
         </div>
-        <p className="text-sm text-slate-400">PS5 and Xbox Series X|S launch target</p>
+        <p className="text-sm font-semibold text-slate-400">PS5 and Xbox Series X|S target</p>
       </div>
-      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        {units.map(([label, value]) => (
-          <div key={label} className="rounded bg-black/35 p-4 text-center ring-1 ring-white/10">
-            <div className="font-mono text-3xl font-black text-white">
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {units.map(([label, value], index) => (
+          <div
+            key={label}
+            className="animate-tick rounded-2xl border border-white/10 bg-black/35 p-4 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+            style={{ animationDelay: `${index * 90}ms` }}
+          >
+            <div className="font-mono text-4xl font-black leading-none text-white sm:text-5xl">
               {value === undefined ? "--" : String(value).padStart(2, "0")}
             </div>
             <div className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
@@ -67,6 +71,9 @@ export function CountdownTimer({ targetIso }: { targetIso: string }) {
           </div>
         ))}
       </div>
+      <p className="mt-5 text-sm leading-6 text-slate-400">
+        Dates can change. We track confirmed updates and keep guides refreshed.
+      </p>
     </section>
   );
 }

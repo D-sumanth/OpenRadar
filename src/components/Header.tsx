@@ -25,10 +25,10 @@ export function Header() {
           ))}
         </nav>
         <Link
-          href="/contact"
-          className="rounded border border-lime-300/50 px-4 py-2 text-sm font-bold text-lime-200 transition hover:bg-lime-300/10"
+          href="/#notify"
+          className="rounded-full border border-cyan-200/30 bg-white/10 px-4 py-2 text-sm font-bold text-cyan-50 shadow-[0_0_24px_rgba(34,211,238,0.08)] transition hover:border-cyan-200/60 hover:bg-cyan-200/15"
         >
-          Contact
+          Notify Me
         </Link>
       </div>
       <nav className="flex gap-1 overflow-x-auto border-t border-white/10 px-4 py-2 md:hidden">

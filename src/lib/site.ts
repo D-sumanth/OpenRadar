@@ -10,11 +10,9 @@ export const site = {
 
 export const navItems = [
   { href: "/", label: "Home" },
-  { href: "/gta-vi-preorder-guide", label: "Pre-order Guide" },
-  { href: "/ps5-vs-xbox-gta-vi", label: "PS5 vs Xbox" },
+  { href: "/gta-vi-preorder-guide", label: "Guide" },
   { href: "/gaming-deals", label: "Deals" },
   { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
 ];
 
 export const socialLinks = [

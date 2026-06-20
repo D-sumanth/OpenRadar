@@ -31,3 +31,88 @@ body {
   line-height: 1.8;
   color: rgb(203 213 225);
 }
+
+.cinematic-bg {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(34, 211, 238, 0.16), transparent 28rem),
+    radial-gradient(circle at 82% 24%, rgba(217, 70, 239, 0.13), transparent 30rem),
+    radial-gradient(circle at 50% 100%, rgba(163, 230, 53, 0.08), transparent 26rem),
+    #05070f;
+}
+
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.animate-rise {
+  animation: rise 700ms ease both;
+}
+
+.animate-rise-delay {
+  animation: rise 800ms ease 140ms both;
+}
+
+.animate-glow {
+  animation: glowShift 12s ease-in-out infinite alternate;
+}
+
+.animate-pulse-soft {
+  animation: pulseSoft 2.8s ease-in-out infinite;
+}
+
+.animate-sweep {
+  animation: radarSweep 5s linear infinite;
+}
+
+.animate-tick {
+  transition: transform 180ms ease, color 180ms ease;
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(18px);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowShift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 1%, 0) scale(1.04);
+  }
+}
+
+@keyframes pulseSoft {
+  0%, 100% {
+    box-shadow: 0 0 26px rgba(34, 211, 238, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 46px rgba(34, 211, 238, 0.16);
+  }
+}
+
+@keyframes radarSweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
