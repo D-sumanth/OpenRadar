@@ -83,9 +83,16 @@ Edit these values manually until a backend is connected:
 - `currentAmount` - verified collected amount
 - `supporterCount` - verified supporter count
 - `supporters` - public supporter wall entries
+- `donationLink` - your live PayPal, Stripe Payment Link, Ko-fi, or Buy Me a Coffee URL
 - `launchDate` - mission launch date marker
 
-The homepage contribution button uses `NEXT_PUBLIC_DONATION_LINK`. Add that environment variable in Vercel when you have a real Stripe Payment Link, Ko-fi, Buy Me a Coffee, or similar payment URL. If it is missing, the button safely shows `Contribution link coming soon.`
+The contribution button uses `NEXT_PUBLIC_DONATION_LINK` first, then falls back to `donationLink` in `src/data/mission.ts`. For PayPal, a common format is:
+
+```txt
+https://www.paypal.com/paypalme/YOUR_PAYPAL_NAME/1
+```
+
+Add the live URL in Vercel as `NEXT_PUBLIC_DONATION_LINK` for production, or paste it into `donationLink` and redeploy. If neither is configured, the button safely shows `Contribution link coming soon.` and no payment is started.
 
 Do not put secret keys in frontend variables. Future private/server env vars:
 

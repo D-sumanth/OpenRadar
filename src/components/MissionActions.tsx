@@ -1,14 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import { mission } from "@/data/mission";
 
-const donationLink = process.env.NEXT_PUBLIC_DONATION_LINK;
+const donationLink = process.env.NEXT_PUBLIC_DONATION_LINK || mission.donationLink;
+
+function isValidPaymentLink(value: string) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" || url.protocol === "http:";
+  } catch {
+    return false;
+  }
+}
 
 export function MissionActions() {
   const [modal, setModal] = useState<"missing" | "how" | null>(null);
 
   function handleContribution() {
-    if (donationLink) {
+    if (isValidPaymentLink(donationLink)) {
       window.open(donationLink, "_blank", "noopener,noreferrer");
       return;
     }
@@ -44,8 +54,9 @@ export function MissionActions() {
                   Contribution link coming soon.
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-400">
-                  Connect `NEXT_PUBLIC_DONATION_LINK` to a Stripe Payment Link,
-                  Ko-fi, Buy Me a Coffee, or another payment provider when ready.
+                  Paste your PayPal payment URL into `donationLink` in
+                  `src/data/mission.ts`, or set `NEXT_PUBLIC_DONATION_LINK` in
+                  Vercel. Until then, no payment is started.
                 </p>
               </>
             ) : (

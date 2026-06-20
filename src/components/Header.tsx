@@ -25,10 +25,10 @@ export function Header() {
           ))}
         </nav>
         <Link
-          href="/contact"
+          href="/support"
           className="rounded-full border border-cyan-200/30 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyan-50 transition hover:-translate-y-0.5 hover:border-cyan-200/60 hover:bg-cyan-200/15"
         >
-          Notify Me
+          Support
         </Link>
       </div>
       <nav className="flex justify-center gap-1 overflow-x-auto border-t border-white/10 px-4 py-2 md:hidden">

@@ -16,6 +16,7 @@ export type Mission = {
   suggestedContribution: number;
   currency: "GBP";
   launchDate: string;
+  donationLink: string;
   contributionDisclaimer: string;
   supporters: Supporter[];
 };
@@ -32,6 +33,9 @@ export const mission: Mission = {
   suggestedContribution: 1,
   currency: "GBP",
   launchDate: "2026-11-19",
+  // Paste your live PayPal/Stripe/Ko-fi/Buy Me a Coffee payment URL here,
+  // or set NEXT_PUBLIC_DONATION_LINK in Vercel to override it.
+  donationLink: "",
   contributionDisclaimer:
     "Contributions are voluntary and support the Open World Radar launch setup, content production, and site development. This is not a charity donation.",
   supporters: [],
