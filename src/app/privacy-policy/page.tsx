@@ -24,6 +24,16 @@ export default function PrivacyPolicyPage() {
           this page will be updated to explain what is collected and why.
         </p>
         <p>
+          If the supporter wall is enabled, only the display name and message chosen for
+          public display should appear publicly. Emails, payment references, and payment
+          details must remain private.
+        </p>
+        <p>
+          Open World Radar should never store payment card details directly. Payments
+          should be handled by a provider such as Stripe, Ko-fi, Buy Me a Coffee, or a
+          similar payment service.
+        </p>
+        <p>
           Users can contact Open World Radar with privacy questions through the contact
           page.
         </p>

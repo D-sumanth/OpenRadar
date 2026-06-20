@@ -73,6 +73,57 @@ Homepage update cards live in `src/lib/radar-updates.ts`.
 
 Social links live in `src/lib/site.ts` under `socialLinks`. Replace `#` values with real profile URLs when the channels are ready.
 
+## Updating The £1 Launch Mission
+
+Mission data lives in `src/data/mission.ts`.
+
+Edit these values manually until a backend is connected:
+
+- `targetAmount` - goal amount, currently `600`
+- `currentAmount` - verified collected amount
+- `supporterCount` - verified supporter count
+- `supporters` - public supporter wall entries
+- `launchDate` - mission launch date marker
+
+The homepage contribution button uses `NEXT_PUBLIC_DONATION_LINK`. Add that environment variable in Vercel when you have a real Stripe Payment Link, Ko-fi, Buy Me a Coffee, or similar payment URL. If it is missing, the button safely shows `Contribution link coming soon.`
+
+Do not put secret keys in frontend variables. Future private/server env vars:
+
+- `STRIPE_SECRET_KEY`
+- `STRIPE_WEBHOOK_SECRET`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+Suggested future `supporters` table:
+
+- `id`
+- `display_name`
+- `email_private`
+- `amount`
+- `currency`
+- `supporter_number`
+- `message`
+- `show_name`
+- `payment_status`
+- `payment_provider`
+- `payment_reference`
+- `created_at`
+
+Rules for the future backend:
+
+- Never show `email_private` publicly.
+- Only show `display_name` when `show_name` is true.
+- Only count rows where `payment_status` is `paid`.
+- Amounts must come from verified payment provider data, not frontend input.
+- Sanitize display names and messages, enforce max lengths, and moderate public messages.
+
+Simple future setup:
+
+1. Create a Stripe Payment Link or Checkout flow for £1 or local equivalent.
+2. Store verified paid supporters in Supabase from a Stripe webhook.
+3. Update progress from paid supporter rows only.
+4. Keep affiliate links and mission contributions disclosed separately.
+
 ## Key Folders
 
 - `src/app` - App Router pages and route metadata

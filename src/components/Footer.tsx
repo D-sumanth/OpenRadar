@@ -10,9 +10,10 @@ export function Footer() {
           <p className="mt-2">{site.disclaimer}</p>
         </div>
         <div className="flex flex-wrap gap-4">
-            <Link href="/privacy-policy">Privacy Policy</Link>
-            <Link href="/terms-of-use">Terms of Use</Link>
-            <Link href="/contact">Contact</Link>
+          <Link href="/mission">Mission</Link>
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/terms-of-use">Terms of Use</Link>
+          <Link href="/contact">Contact</Link>
         </div>
       </div>
     </footer>

@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CountdownTimer } from "@/components/CountdownTimer";
+import { MissionSection } from "@/components/MissionSection";
+import { RadarWall } from "@/components/RadarWall";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -64,6 +66,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <MissionSection />
+      <RadarWall />
     </div>
   );
 }

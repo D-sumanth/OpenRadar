@@ -14,6 +14,10 @@ const terms = [
   "Deals, prices, availability, and platform details may change.",
   "Users should verify details with retailers, platform stores, and official sources before purchasing.",
   "Open World Radar does not guarantee accuracy, availability, savings, profit, or outcomes.",
+  "The £1 Launch Mission accepts voluntary contributions for launch setup, content production, and site development.",
+  "Mission contributions are not charity donations, are not tax-deductible, and do not guarantee rewards, access, or outcomes.",
+  "Refunds, if available, are handled through the payment provider or manual contact process.",
+  "Contribution goals, prices, pages, and project plans may change as Open World Radar evolves.",
 ];
 
 export default function TermsOfUsePage() {

@@ -203,6 +203,134 @@ body {
   text-transform: uppercase;
 }
 
+.mission-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(34, 211, 238, 0.1), transparent 22rem),
+    radial-gradient(circle at 90% 90%, rgba(190, 242, 100, 0.07), transparent 20rem),
+    rgba(255, 255, 255, 0.035);
+  padding: clamp(1.25rem, 4vw, 2rem);
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.mission-title {
+  margin-top: 0.75rem;
+  color: white;
+  font-family: var(--font-cinematic);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.mission-stat {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.22);
+  padding: 1rem;
+}
+
+.mission-stat span {
+  display: block;
+  color: white;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.mission-stat small {
+  color: rgb(148 163 184);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.mission-progress {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgb(34 211 238), rgb(190 242 100));
+  box-shadow: 0 0 22px rgba(34, 211, 238, 0.32);
+  animation: progressIn 900ms ease both;
+}
+
+.mission-button {
+  border-radius: 999px;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-cinematic);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.mission-button:hover {
+  transform: translateY(-2px);
+}
+
+.mission-button-primary {
+  background: rgb(190 242 100);
+  color: rgb(2 6 23);
+  box-shadow: 0 0 28px rgba(190, 242, 100, 0.12);
+}
+
+.mission-button-primary:hover {
+  box-shadow: 0 0 34px rgba(190, 242, 100, 0.24);
+}
+
+.mission-button-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgb(207 250 254);
+}
+
+.radar-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(103, 232, 249, 0.12);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at center, rgba(34, 211, 238, 0.12), transparent 56%),
+    rgba(0, 0, 0, 0.18);
+  padding: 1rem;
+  min-height: 18rem;
+}
+
+.radar-dot-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(30, minmax(0, 1fr));
+  gap: 0.32rem;
+}
+
+.radar-dot {
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.18);
+}
+
+.radar-dot-active {
+  background: rgb(190 242 100);
+  box-shadow: 0 0 12px rgba(190, 242, 100, 0.58);
+  animation: signalPulse 2.8s ease-in-out infinite;
+}
+
+.radar-sweep {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 1px;
+  width: 46%;
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.5), transparent);
+  animation: radarSweep 7s linear infinite;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -264,6 +392,26 @@ body {
   }
 }
 
+@keyframes progressIn {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@keyframes signalPulse {
+  0%, 100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @media (max-width: 640px) {
   .minimal-title {
     letter-spacing: 0.08em;
@@ -276,5 +424,10 @@ body {
 
   .countdown-tile {
     border-radius: 0.9rem;
+  }
+
+  .radar-dot-grid {
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    gap: 0.26rem;
   }
 }
