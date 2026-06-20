@@ -35,7 +35,7 @@ export const mission: Mission = {
   launchDate: "2026-11-19",
   // Paste your live PayPal/Stripe/Ko-fi/Buy Me a Coffee payment URL here,
   // or set NEXT_PUBLIC_DONATION_LINK in Vercel to override it.
-  donationLink: "",
+  donationLink: "https://www.paypal.com/pool/9qe5gUkt0X?sr=wccr",
   contributionDisclaimer:
     "Contributions are voluntary and support the Open World Radar launch setup, content production, and site development. This is not a charity donation.",
   supporters: [],
