@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { DisclaimerBanner } from "@/components/DisclaimerBanner";
+import { Geist, Geist_Mono, Oxanium } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site } from "@/lib/site";
@@ -13,6 +12,11 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const oxanium = Oxanium({
+  variable: "--font-oxanium",
   subsets: ["latin"],
 });
 
@@ -43,10 +47,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full`}
+      className={`${geistSans.variable} ${geistMono.variable} ${oxanium.variable} h-full`}
     >
       <body className="flex min-h-full flex-col antialiased">
-        <DisclaimerBanner />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

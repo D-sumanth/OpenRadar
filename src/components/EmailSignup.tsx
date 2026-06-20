@@ -10,7 +10,7 @@ export function EmailSignup() {
       className="mt-6 grid gap-3"
       onSubmit={(event) => {
         event.preventDefault();
-        setMessage("Signup coming soon. Follow social pages for now.");
+        setMessage("Signup coming soon.");
       }}
     >
       <label className="sr-only" htmlFor="email">
@@ -24,7 +24,7 @@ export function EmailSignup() {
       />
       <button
         type="submit"
-        className="rounded-full bg-cyan-200 px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-slate-950 transition hover:bg-white"
+        className="rounded-full bg-cyan-200 px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-slate-950 transition hover:-translate-y-0.5 hover:bg-white"
       >
         Notify me
       </button>

@@ -3,6 +3,7 @@
 :root {
   --background: #05070f;
   --foreground: #edf7ff;
+  --font-cinematic: var(--font-oxanium), "Rajdhani", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 }
 
 @theme inline {
@@ -79,6 +80,135 @@ body {
   backdrop-filter: blur(18px);
 }
 
+.minimal-hero-bg {
+  background:
+    radial-gradient(circle at 50% 16%, rgba(34, 211, 238, 0.18), transparent 34rem),
+    radial-gradient(circle at 84% 72%, rgba(168, 85, 247, 0.12), transparent 30rem),
+    linear-gradient(135deg, #03050b 0%, #05070f 52%, #0b101a 100%);
+}
+
+.hero-bg-image {
+  animation: heroDrift 24s ease-in-out infinite alternate;
+  filter: saturate(0.86) contrast(1.05);
+  opacity: 0.34;
+}
+
+.minimal-label,
+.minimal-date,
+.minimal-title,
+.minimal-pill {
+  font-family: var(--font-cinematic);
+}
+
+.minimal-label {
+  color: rgb(190 242 100);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.48em;
+  text-transform: uppercase;
+}
+
+.minimal-title {
+  color: white;
+  font-size: clamp(3rem, 10vw, 8.5rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 0.92;
+  text-transform: uppercase;
+  text-shadow: 0 0 42px rgba(34, 211, 238, 0.12);
+}
+
+.minimal-date {
+  color: rgb(207 250 254);
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.minimal-pill {
+  display: flex;
+  min-width: min(100%, 15rem);
+  flex-direction: column;
+  gap: 0.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.045);
+  padding: 0.82rem 1rem;
+  color: white;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  backdrop-filter: blur(14px);
+}
+
+.minimal-pill:hover {
+  transform: translateY(-2px);
+  border-color: rgba(103, 232, 249, 0.42);
+  background: rgba(103, 232, 249, 0.08);
+}
+
+.minimal-pill span {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.minimal-pill small {
+  color: rgb(148 163 184);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.countdown-perspective {
+  perspective: 900px;
+}
+
+.countdown-tile {
+  position: relative;
+  display: grid;
+  min-height: clamp(7.4rem, 17vw, 12.5rem);
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  border-radius: 1.1rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), transparent 42%),
+    rgba(3, 7, 18, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 34px rgba(34, 211, 238, 0.09),
+    0 24px 80px rgba(0, 0, 0, 0.28);
+  transform-origin: 50% 0%;
+  animation: cubeFlip 640ms cubic-bezier(0.2, 0.74, 0.24, 1) both;
+  backdrop-filter: blur(18px);
+}
+
+.countdown-tile::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 49%, rgba(255, 255, 255, 0.08) 50%, transparent 51%);
+  content: "";
+}
+
+.countdown-value {
+  color: white;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: clamp(2.8rem, 8vw, 6.7rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.82;
+}
+
+.countdown-label {
+  position: absolute;
+  bottom: 1rem;
+  color: rgb(148 163 184);
+  font-family: var(--font-cinematic);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -114,5 +244,43 @@ body {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes heroDrift {
+  from {
+    transform: scale(1.02) translate3d(-0.8%, -0.4%, 0);
+  }
+  to {
+    transform: scale(1.08) translate3d(0.8%, 0.5%, 0);
+  }
+}
+
+@keyframes cubeFlip {
+  0% {
+    opacity: 0.72;
+    transform: rotateX(-72deg) translateY(-0.35rem);
+  }
+  58% {
+    transform: rotateX(8deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg) translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .minimal-title {
+    letter-spacing: 0.08em;
+  }
+
+  .minimal-label,
+  .minimal-date {
+    letter-spacing: 0.26em;
+  }
+
+  .countdown-tile {
+    border-radius: 0.9rem;
   }
 }

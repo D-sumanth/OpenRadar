@@ -1,158 +1,80 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { CinematicMediaPanel } from "@/components/CinematicMediaPanel";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { EmailSignup } from "@/components/EmailSignup";
-import { QuickActionCard } from "@/components/QuickActionCard";
-import { heroMedia, mediaStrip } from "@/lib/media";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Open World Radar | GTA VI Countdown, Launch Guide and Gaming Deals",
+  title: "Open World Radar | GTA VI Countdown",
   description:
-    "Fan-made GTA VI launch countdown, console prep guides, open-world gaming updates, and gaming deal alerts.",
+    "A minimalist fan-made GTA VI countdown and launch prep page by Open World Radar.",
 };
 
-const quickActions = [
-  {
-    title: "Launch Guide",
-    description: "Pre-order status, editions, platform notes, and what to wait for before buying.",
-    href: "/gta-vi-preorder-guide",
-    marker: "01",
-    cta: "Read guide",
-  },
-  {
-    title: "Console Prep",
-    description: "A practical PS5 vs Xbox breakdown for storage, displays, ecosystem, and budget.",
-    href: "/ps5-vs-xbox-gta-vi",
-    marker: "02",
-    cta: "Compare",
-  },
-  {
-    title: "Deal Watch",
-    description: "Console, controller, storage, and display picks with clear affiliate disclosure.",
-    href: "/gaming-deals",
-    marker: "03",
-    cta: "View deals",
-  },
-];
+const heroImage = "/images/hero-gaming.jpg";
 
-const latestSignals = ["Launch date watch", "Console buying guide", "Deal alerts"];
+function hasPublicAsset(src: string) {
+  return src.startsWith("/") && existsSync(join(process.cwd(), "public", src.slice(1)));
+}
+
+const links = [
+  ["Launch Guide", "pre-order and release notes", "/gta-vi-preorder-guide"],
+  ["Console Prep", "PS5 and Xbox setup", "/ps5-vs-xbox-gta-vi"],
+  ["Deal Watch", "accessories and prices", "/gaming-deals"],
+] as const;
 
 export default function Home() {
+  const hasHeroImage = hasPublicAsset(heroImage);
+
   return (
-    <>
-      <section className="cinematic-bg relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 soft-grid opacity-40" />
-        <div className="relative mx-auto grid min-h-[calc(100svh-7rem)] max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-16">
-          <div className="animate-rise flex flex-col justify-center">
-            <p className="font-mono text-xs font-black uppercase tracking-[0.28em] text-lime-200">
-              Open-world launch signal
-            </p>
-            <h1 className="mt-5 max-w-4xl text-5xl font-black leading-[0.95] text-white sm:text-6xl lg:text-7xl">
-              GTA VI Countdown, Launch Guide and Gaming Deals
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Track the road to GTA VI with fan-made countdowns, console prep guides,
-              open-world gaming updates, and deal alerts without the official-brand noise.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/gta-vi-preorder-guide"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-200"
-              >
-                Launch guide
-                <span aria-hidden>→</span>
+    <div>
+      <section
+        id="countdown"
+        className="minimal-hero-bg relative flex min-h-[calc(100svh-3.5rem)] overflow-hidden px-4 pt-10 text-center sm:px-6 lg:px-8"
+      >
+        {/* Replace /public/images/hero-gaming.jpg with approved background media, or remove it to use the gradient fallback. */}
+        {hasHeroImage ? (
+          <Image
+            src={heroImage}
+            alt="Subtle open-world coastline background"
+            fill
+            priority
+            sizes="100vw"
+            className="hero-bg-image object-cover"
+          />
+        ) : null}
+        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_22%,rgba(34,211,238,0.22),transparent_34rem),radial-gradient(circle_at_78%_76%,rgba(217,70,239,0.12),transparent_30rem)]" />
+        <div className="absolute inset-0 soft-grid opacity-25" />
+
+        <div className="animate-rise relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-7 pb-16">
+          <p className="minimal-label">Open World Radar</p>
+          <h1 className="minimal-title">GTA VI Countdown</h1>
+          <p className="minimal-date">November 19, 2026</p>
+
+          <CountdownTimer targetIso={site.gtaReleaseIso} />
+
+          <div className="mt-4 flex flex-col gap-2 text-left sm:flex-row sm:text-center">
+            {links.map(([title, description, href]) => (
+              <Link key={title} href={href} className="minimal-pill">
+                <span>{title}</span>
+                <small>{description}</small>
               </Link>
-              <Link
-                href="#notify"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-white/10"
-              >
-                Notify me
-              </Link>
-            </div>
-            <p className="mt-5 text-sm font-semibold text-slate-400">
-              Fan-made gaming news and guides. Not affiliated with Rockstar Games or
-              Take-Two Interactive.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-2">
-              {latestSignals.map((signal) => (
-                <span
-                  key={signal}
-                  className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-300"
-                >
-                  {signal}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="animate-rise-delay flex items-center">
-            <CinematicMediaPanel
-              src={heroMedia.src}
-              alt={heroMedia.alt}
-              label="Original media slot"
-              priority
-              className="min-h-[440px] w-full"
-            />
+            ))}
           </div>
         </div>
       </section>
 
-      <main>
-        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <CountdownTimer targetIso={site.gtaReleaseIso} />
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-          <div className="grid gap-4 md:grid-cols-3">
-            {quickActions.map((action) => (
-              <QuickActionCard key={action.title} {...action} />
-            ))}
-          </div>
-        </section>
-
-        <section className="border-y border-white/10 bg-white/[0.02]">
-          <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-fuchsia-200">
-                  Visual radar
-                </p>
-                <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">
-                  Drop in your own approved gaming artwork.
-                </h2>
-              </div>
-              <Link href="/blog" className="text-sm font-bold text-cyan-200">
-                Latest updates
-              </Link>
-            </div>
-            <div className="grid gap-4 md:grid-cols-3">
-              {mediaStrip.map((item) => (
-                <CinematicMediaPanel
-                  key={item.src}
-                  src={item.src}
-                  alt={item.alt}
-                  label={item.label}
-                  className="min-h-72 rounded-[1.5rem]"
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="notify" className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="glass-panel rounded-[2rem] p-6 sm:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-lime-200">
-              Get launch alerts
-            </p>
-            <h2 className="mt-3 text-3xl font-black text-white">Watch the launch window.</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-400">
-              A minimal signup placeholder for future updates. No real submission is wired yet.
-            </p>
-            <EmailSignup />
-          </div>
-        </section>
-      </main>
-    </>
+      <section id="notify" className="mx-auto max-w-xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
+          <h2 className="text-lg font-black uppercase tracking-[0.22em] text-white">
+            Get launch alerts
+          </h2>
+          <EmailSignup />
+        </div>
+      </section>
+    </div>
   );
 }
