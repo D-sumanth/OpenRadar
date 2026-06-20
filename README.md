@@ -55,18 +55,23 @@ The blog index at `/blog` and article route at `/blog/[slug]` update automatical
 
 Deal cards live in `src/lib/deals.ts`.
 
-Replace placeholder values with real merchant data after joining affiliate programs. Keep disclosures clear near any purchase links.
+Deal cards are grouped by `category` and rendered on `/gaming-deals`. Replace sample values with real merchant data after joining affiliate programs. Keep disclosures clear near any purchase links.
 
 ```ts
 {
   title: "Console Bundle",
-  vendor: "Retailer",
-  price: "$499",
+  badge: "Deal Watch",
+  category: "Console setup",
   tag: "Console",
   description: "Why this deal may be useful.",
   href: "https://example.com",
+  cta: "View deal",
 }
 ```
+
+Homepage update cards live in `src/lib/radar-updates.ts`.
+
+Social links live in `src/lib/site.ts` under `socialLinks`. Replace `#` values with real profile URLs when the channels are ready.
 
 ## Key Folders
 

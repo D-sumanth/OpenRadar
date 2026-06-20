@@ -3,9 +3,9 @@ import { CountdownTimer } from "@/components/CountdownTimer";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "GTA VI Pre-order Guide",
+  title: "GTA VI Launch and Pre-order Guide",
   description:
-    "Fan-made GTA VI pre-order guide covering platforms, editions to watch, timing, and safe buying tips.",
+    "Open World Radar fan-made GTA VI launch guide covering pre-order watch notes, PS5, Xbox, platform availability, console prep, and safe buying tips.",
 };
 
 const checklist = [

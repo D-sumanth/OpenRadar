@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Affiliate Disclosure",
+  title: "Affiliate Disclosure for Open World Radar",
   description:
-    "Affiliate disclosure for Open World Radar, including how commissions may work on gaming deal links.",
+    "Affiliate disclosure for Open World Radar console deals, GTA VI launch guide recommendations, PS5, Xbox, and open-world gaming deal links.",
 };
 
 export default function AffiliateDisclosurePage() {

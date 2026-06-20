@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SocialLinks } from "@/components/SocialLinks";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -13,6 +14,9 @@ export function Footer() {
             {site.description}
           </p>
           <p className="mt-4 text-xs leading-5 text-slate-500">{site.disclaimer}</p>
+          <div className="mt-5">
+            <SocialLinks compact />
+          </div>
         </div>
         <div>
           <h2 className="text-sm font-bold text-white">Guides</h2>
@@ -27,6 +31,8 @@ export function Footer() {
           <div className="mt-3 grid gap-2 text-sm text-slate-400">
             <Link href="/about">About</Link>
             <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/terms-of-use">Terms of Use</Link>
             <Link href="/contact">Contact</Link>
           </div>
         </div>

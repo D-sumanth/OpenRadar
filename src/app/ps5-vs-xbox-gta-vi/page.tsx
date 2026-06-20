@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "PS5 vs Xbox for GTA VI",
+  title: "PS5 vs Xbox for GTA VI Launch Prep",
   description:
-    "A practical fan-made comparison of PS5 and Xbox Series X|S for GTA VI and open-world gaming.",
+    "Open World Radar guide comparing PS5, Xbox Series X, Xbox Series S, console deals, storage, controllers, and open-world gaming setup choices for GTA VI.",
 };
 
 const rows = [

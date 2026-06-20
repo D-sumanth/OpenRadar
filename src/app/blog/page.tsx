@@ -3,9 +3,9 @@ import { ArticleCard } from "@/components/ArticleCard";
 import { posts } from "@/lib/posts";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Blog for GTA VI Updates and Open-World Gaming",
   description:
-    "Fan-made GTA VI and open-world gaming articles, guides, launch prep notes, and buying advice.",
+    "Open World Radar blog for fan-made GTA VI updates, open-world gaming news, launch guide notes, PS5 and Xbox console deals, and buying advice.",
 };
 
 export default function BlogPage() {

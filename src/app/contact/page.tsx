@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact Open World Radar",
   description:
-    "Contact Open World Radar for corrections, tips, affiliate inquiries, and fan-made gaming media questions.",
+    "Contact Open World Radar for GTA VI updates, open-world gaming corrections, launch guide tips, PS5 and Xbox console deals, and fan-made media questions.",
 };
 
 export default function ContactPage() {
@@ -36,7 +36,10 @@ export default function ContactPage() {
             className="rounded border border-white/10 bg-black/35 px-4 py-3 text-white outline-none focus:border-fuchsia-200"
           />
         </label>
-        <button className="rounded bg-fuchsia-300 px-4 py-3 text-sm font-black uppercase tracking-[0.14em] text-slate-950">
+        <button
+          type="button"
+          className="rounded bg-fuchsia-300 px-4 py-3 text-sm font-black uppercase tracking-[0.14em] text-slate-950"
+        >
           Send placeholder message
         </button>
       </form>

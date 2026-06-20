@@ -1,11 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArticleCard } from "@/components/ArticleCard";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { DealCard } from "@/components/DealCard";
+import { EmailSignup } from "@/components/EmailSignup";
 import { RadarGraphic } from "@/components/RadarGraphic";
+import { RadarUpdateCard } from "@/components/RadarUpdateCard";
+import { SocialLinks } from "@/components/SocialLinks";
 import { deals } from "@/lib/deals";
 import { posts } from "@/lib/posts";
+import { radarUpdates } from "@/lib/radar-updates";
 import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Open World Radar | GTA VI Updates, Launch Guide, Console Deals",
+  description:
+    "Open World Radar is a fan-made hub for GTA VI updates, open-world gaming guides, PS5 and Xbox launch prep, and console deal watchlists.",
+};
 
 const updates = [
   "Countdown set to the current November 19, 2026 GTA VI launch date.",
@@ -24,31 +35,52 @@ export default function Home() {
               Fan-made open-world signal desk
             </p>
             <h1 className="mt-5 max-w-4xl text-5xl font-black leading-none text-white sm:text-6xl lg:text-7xl">
-              GTA VI updates, console prep, and open-world gaming deals.
+              Track GTA VI launch updates, console prep, and open-world gaming deals.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Open World Radar is a faceless gaming media brand for practical news,
-              guides, and buying decisions. No official logos, no copyrighted art,
-              and no affiliation claims.
+              Open World Radar is a fan-made hub for verified updates, buying guides,
+              launch checklists, and no-hype gaming explainers.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/gta-vi-preorder-guide"
                 className="rounded bg-cyan-300 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.12em] text-slate-950 transition hover:bg-cyan-200"
               >
-                Pre-order guide
+                Read the launch guide
               </Link>
               <Link
-                href="/ps5-vs-xbox-gta-vi"
+                href="/gaming-deals"
                 className="rounded border border-white/20 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.12em] text-white transition hover:bg-white/10"
               >
-                Compare consoles
+                Explore gaming deals
               </Link>
             </div>
+            <p className="mt-4 text-sm font-semibold text-slate-400">
+              Official updates clearly separated from rumours and community speculation.
+            </p>
           </div>
           <div className="overflow-hidden rounded border border-cyan-300/20 bg-white/[0.03]">
             <RadarGraphic tone="cyan" />
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-cyan-200">
+              Latest Radar Updates
+            </p>
+            <h2 className="mt-2 text-3xl font-black text-white">Clear labels, practical context.</h2>
+          </div>
+          <Link href="/blog" className="text-sm font-bold text-cyan-200">
+            Visit the blog
+          </Link>
+        </div>
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {radarUpdates.map((update) => (
+            <RadarUpdateCard key={update.title} update={update} />
+          ))}
         </div>
       </section>
 
@@ -119,26 +151,31 @@ export default function Home() {
           <p className="text-xs font-black uppercase tracking-[0.22em] text-fuchsia-200">
             Email signup
           </p>
-          <h2 className="mt-3 text-3xl font-black text-white">Get the launch-week brief.</h2>
+          <h2 className="mt-3 text-3xl font-black text-white">Get the launch checklist</h2>
           <p className="mt-3 text-sm leading-6 text-slate-400">
-            A simple placeholder signup for weekly GTA VI prep notes, deal watch alerts,
-            and open-world gaming updates.
+            Join the list for GTA VI launch prep, console deal alerts, and weekly open-world
+            gaming updates. No spam, just practical updates.
           </p>
-          <form className="mt-6 grid gap-3">
-            <label className="sr-only" htmlFor="email">
-              Email address
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="you@example.com"
-              className="rounded border border-white/10 bg-black/35 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-fuchsia-200"
-            />
-            <button className="rounded bg-fuchsia-300 px-4 py-3 text-sm font-black uppercase tracking-[0.14em] text-slate-950">
-              Join the list
-            </button>
-          </form>
+          <EmailSignup />
         </aside>
+      </section>
+
+      <section className="border-y border-white/10 bg-cyan-300/[0.04]">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:px-8">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-cyan-200">
+              Follow the radar
+            </p>
+            <h2 className="mt-2 text-3xl font-black text-white">Follow Open World Radar</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
+              Short GTA VI updates, console prep tips, and open-world gaming news are
+              coming soon across Shorts, Reels, and TikTok.
+            </p>
+          </div>
+          <div className="flex items-center lg:justify-end">
+            <SocialLinks />
+          </div>
+        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
